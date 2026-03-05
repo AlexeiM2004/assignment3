@@ -2,17 +2,18 @@
     "tasks": [
         {
             "type": "cppbuild",
-            "label": "C/C++: g++.exe build active file",
-            "command": "C:\\msys641\\ucrt64\\bin\\g++.exe",
+            "label": "C/C++: gcc.exe build active file",
+            "command": "C:/msys641/ucrt64/bin/gcc.exe",
             "args": [
                 "-fdiagnostics-color=always",
                 "-g",
                 "${file}",
                 "-o",
-                "${fileDirname}\\${fileBasenameNoExtension}.exe"
+                "${fileDirname}\\${fileBasenameNoExtension}.exe",
+                ""
             ],
             "options": {
-                "cwd": "${fileDirname}"
+                "cwd": "C:/msys641/ucrt64/bin"
             },
             "problemMatcher": [
                 "$gcc"
