@@ -25,7 +25,7 @@ public:
     void set_on_off_status(bool on_off_status);
 // Define any other function used
     int generate_counts(const Source& source);
-    const void display_information();
+    void display_information() const;
 // Define any other functions  
 };
 

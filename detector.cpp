@@ -4,18 +4,45 @@
 //Include any more useful libraries 
 
 // Default constructor, essentially just the most primitive initialisation
+Detector::Detector() : detector_type("Unspecified"), on_off_status(false), counts(0) {}
 
 // Paramaterzied constructor, 
-
+Detector::Detector(std::string type, bool status)
+{
+    set_detector_type(type);
+    set_on_off_status(status);
+    counts = 0;
+    //Create a random number generator, potentially linking to the time
+}
 // Destructor 
+Detector::~Detector() {}
 
 // Getter
+std::string Detector::get_detector_type() const {return detector_type;}
+bool Detector::get_on_off_status() const {return on_off_status;}
+int Detector::get_counts() const {return counts;}
 
 // Setters (validation required)
 
-/*  Set Type
-    Set status on/off*/
+void Detector::set_detector_type(std::string detector_type)
+{
+
+}
+void Detector::set_on_off_status(bool on_off_status)
+{
+
+}
 
 // Main functionality function, is detector on? what source is used, generate a random number
 
+int Detector::generate_counts(const Source& source)
+{
+
+}
+
 // Display info 
+
+void Detector::display_information() const
+{
+
+}
