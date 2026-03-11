@@ -56,32 +56,27 @@ int main()
         {
             try
             {
-                // Converting status string into a bool
-                bool status;
-                if (status_string == "ON")
-                {
-                    status = true;
-                }else{
-                    status = false; 
-                }
-
-                Detector d(type, status);
-
-                if(d.get_detector_type() == "0")
-                {
-                    std::cout << "\nExiting program.";
-                    return 1;
-                }
-
+                Detector d(type, status_string);
                 detectors.push_back(d);
                 
             } catch(...) {}
         }
     }
+
+    // If the input was invalid, the program is exited
+    for(const Detector& detector : detectors)
+    {
+        if(detector.get_detector_type() == "TYPE_ERROR" || detector.get_detector_type() == "STATUS_ERROR")
+        {
+            std::cout << "\nExiting program.";
+            return 1;
+        }
+    }
+
     detector_file.close();
 
-    std::cout << "Loaded " << sources.size() << " sources successfully.\n";
-    std::cout << "Loaded " << detectors.size() << " detectors successfully.\n";
+    std::cout << "\nLoaded " << sources.size() << " sources successfully.\n";
+    std::cout << "\nLoaded " << detectors.size() << " detectors successfully.\n";
 
     std::cout << "\nSOURCE TYPES\n";
     for(const Source& source : sources)

@@ -7,7 +7,7 @@
 Detector::Detector() : detector_type("Unspecified"), on_off_status(false), counts(0) {}
 
 // Paramaterzied constructor, 
-Detector::Detector(std::string type, bool status)
+Detector::Detector(std::string type, std::string status)
 {
     set_detector_type(type);
     set_on_off_status(status);
@@ -36,14 +36,27 @@ void Detector::set_detector_type(std::string type)
         std::cout << "\nScintillator";
         std::cout << "\nGeiger";
         std::cout << "\nNote that, input is case sensitive and 'Detector' is not required";
-        int invalid_detector_input = 0;
-        detector_type = invalid_detector_input;
+        detector_type = "TYPE_ERROR";
     }
 
 }
-void Detector::set_on_off_status(bool status)
+void Detector::set_on_off_status(std::string status)
 {
-    on_off_status = status;
+    if(status == "ON")
+    {
+        on_off_status = true;
+    }else if(status == "OFF")
+    {
+        on_off_status = false;
+    }else{
+        std::cout << "\nInvalid on/off status input, please use a valid status inpit.\n";
+        std::cout << "\nValid input types are;";
+        std::cout << "\nON";
+        std::cout << "\nOFF";
+        std::cout << "\nNote that, input is case sensitive";
+        detector_type = "STATUS_ERROR"; 
+    }
+
 }
 
 // Main functionality function, is detector on? what source is used, generate a random number
@@ -59,5 +72,5 @@ void Detector::display_information() const
 {
     std::cout << "\nDetector Information;";
     std::cout << "\nDetector type - " << detector_type <<",";
-    std::cout << "\nDetector status, (0 = OFF, 1 = ON) - " << on_off_status <<".";
+    std::cout << "\nDetector status, (0 = OFF, 1 = ON), " << on_off_status <<".";
 }
