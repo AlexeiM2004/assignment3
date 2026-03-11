@@ -8,7 +8,16 @@
 #include <sstream>
 
 // Default constructor, essentially just the most primitive initialisation
-Source::Source() : source_type("Unspecified"), source_acquisition_date("Unspecified"), source_activity(0), source_ID(0), valid_flag(true) {}
+Source::Source() : source_type("Unspecified"), source_acquisition_date("Unspecified"), source_activity(0), source_ID(0), valid_flag(true) {
+   
+    // Calculates the current time since epoch (the system boot) using the steady clock (one of the three clocks in the chrono namespace)
+    // Steady clock is monotonic, it will never go backwards in time, each moment in time therefore has a unique time duration since the epoch. 
+    // The time is then extracted as an integer and set as the source ID
+    auto current_time = std::chrono::steady_clock::now();
+    auto duration = current_time.time_since_epoch();
+    source_ID = std::chrono::duration_cast<std::chrono::nanoseconds>(duration).count();
+
+}
 
 // Paramaterzied constructor, 
 Source::Source(std::string type, std::string date, double activity) : valid_flag(true)
@@ -17,9 +26,7 @@ Source::Source(std::string type, std::string date, double activity) : valid_flag
     set_source_acquisition_date(date);
     set_source_activity(activity);
 
-    // Calculates the current time since epoch (the system boot) using the steady clock (one of the three clocks in the chrono namespace)
-    // Steady clock is monotonic, it will never go backwards in time, each moment in time therefore has a unique time duration since the epoch. 
-    // The time is then extracted as an integer and set as the source ID
+    // Same unique ID generation performed for the parameterised constructor
     auto current_time = std::chrono::steady_clock::now();
     auto duration = current_time.time_since_epoch();
     source_ID = std::chrono::duration_cast<std::chrono::nanoseconds>(duration).count();
@@ -86,7 +93,7 @@ void Source::set_source_acquisition_date(std::string date)
             valid_flag = false;
         } 
     }else{
-        std::cout << "\nInvalid DD/MM/YYY input format.";
+        std::cout << "\nInvalid DD/MM/YYYY input format.";
         std::cout << "\nPlease use the DD/MM/YYYY format.";
         valid_flag = false;
     }

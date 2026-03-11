@@ -1,19 +1,19 @@
 #include "detector.h"
 #include <iostream>
 #include <vector>
-//Include any more useful libraries 
+#include <random>
 
-// Default constructor, essentially just the most primitive initialisation
+// Default constructor
 Detector::Detector() : detector_type("Unspecified"), on_off_status(false), counts(0), valid_flag(true) {}
 
-// Paramaterzied constructor, 
+// Paramaterzied constructor,
 Detector::Detector(std::string type, std::string status) : valid_flag(true)
 {
     set_detector_type(type);
     set_on_off_status(status);
     counts = 0;
-    //Create a random number generator, potentially linking to the time
 }
+
 // Destructor 
 Detector::~Detector() {}
 
@@ -22,7 +22,9 @@ std::string Detector::get_detector_type() const {return detector_type;}
 bool Detector::get_on_off_status() const {return on_off_status;}
 int Detector::get_counts() const {return counts;}
 
-// Setters (validation required)
+// Setters
+
+// Detector type setter validation
 
 void Detector::set_detector_type(std::string type)
 {
@@ -41,6 +43,9 @@ void Detector::set_detector_type(std::string type)
     }
 
 }
+
+// Detector status setter validation 
+
 void Detector::set_on_off_status(std::string status)
 {
     if(status == "ON")
@@ -65,6 +70,16 @@ void Detector::set_on_off_status(std::string status)
 
 int Detector::generate_counts(const Source& source)
 {
+    // Uses the random package to generate a random number from 1 to 1000 using the uniform distribution (all equally likely)
+    static std::default_random_engine generate_random_number(std::random_device{}());
+    static std::uniform_int_distribution<> uniform_number_distribution(1, 1000);
+    if(on_off_status == true)
+    {
+        counts = uniform_number_distribution(generate_random_number);
+        return counts;
+    }else{
+        counts = 0;
+    }
     return 0;
 }  
 
@@ -74,5 +89,6 @@ void Detector::display_information() const
 {
     std::cout << "\nDetector Information;";
     std::cout << "\nDetector type - " << detector_type <<",";
-    std::cout << "\nDetector status, (0 = OFF, 1 = ON), " << on_off_status <<".";
+    std::cout << "\nDetector status, " << on_off_status <<", (0 = OFF, 1 = ON).";
+    std::cout << "\nCounts detected, " << counts << ".";
 }
