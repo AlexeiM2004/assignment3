@@ -1,16 +1,17 @@
 #include "source.h"
 #include <iostream>
 #include <vector>
-#include <ctime>
+#include <algorithm>
 #include <cstdlib> 
 #include <chrono>
 #include <cmath>
+#include <sstream>
 
 // Default constructor, essentially just the most primitive initialisation
-Source::Source() : source_type("Unspecified"), source_acquisition_date("Unspecified"), source_activity(0), source_ID(0) {}
+Source::Source() : source_type("Unspecified"), source_acquisition_date("Unspecified"), source_activity(0), source_ID(0), valid_flag(true) {}
 
 // Paramaterzied constructor, 
-Source::Source(std::string type, std::string date, double activity)
+Source::Source(std::string type, std::string date, double activity) : valid_flag(true)
 {
     set_source_type(type);
     set_source_acquisition_date(date);
@@ -37,16 +38,64 @@ long long Source::get_source_ID() const {return source_ID;}
 
 void Source::set_source_type(std::string type)
 {
-    source_type = type;
+    // A static vector containing all valid source types. 
+    static std::vector<std::string> valid_isotope_list = {
+        "Na-22","Cs-136","Co-92","Eu-152","Cs-137","I-131","Am-241","Sr-90","Pt-239","U-235","C-14"
+    };
+    // Checks the type against the static vector
+    if(std::find(valid_isotope_list.begin(), valid_isotope_list.end(), type) != valid_isotope_list.end())
+    {
+        source_type = type;
+    }else{
+        std::cout << "\nInvalid source type input, please use a valid source type.\n";
+        std::cout << "\nValid input types are;\n";
+        for(const auto& isotope : valid_isotope_list)
+        {
+            std::cout << isotope << "\n";
+        }
+        std::cout << "\nNote that, input is case sensitive and follows the format ELEMENT-MASS No.\n";
+        source_type = type;
+        valid_flag = false;
+    }
 }
+
+// This function takes the date read off the file, splits it into 3 variables, then validates each one individually
+// If the DD/MM/YYYY format isnt followed then it is flagged invalid
 
 void Source::set_source_acquisition_date(std::string date)
 {
     source_acquisition_date = date;
+
+    std::stringstream ss(date);
+    std::string day_string, month_string, year_string;
+
+    // The string into 3 parts using the given '/' delimiter
+    if(std::getline(ss, day_string, '/') && std::getline(ss, month_string, '/') && std::getline(ss, year_string, '/'))
+    {
+        int day = std::stoi(day_string);
+        int month = std::stoi(month_string);
+        int year = std::stoi(year_string);
+        if(day <= 0 || day > 31 ||
+            month <= 0 || month > 12 ||
+            year < 1898 || year > 2026)
+        {
+            std::cout << "\nInvalid date, month or year input.";
+            std::cout << "\nValid input types are, DD (1-31), MM (1-12), YYYY(1898-2026)";
+            valid_flag = false;
+        } 
+    }else{
+        std::cout << "\nInvalid DD/MM/YYY input format.";
+        std::cout << "\nPlease use the DD/MM/YYYY format.";
+        valid_flag = false;
+    }
 }
 
 void Source::set_source_activity(double activity)
 {
+    if(activity <= 0 || activity > 1e9){
+        std::cout << "\nInvalid activity, please input an activity within the range of 1-1x10^9";
+        valid_flag = false;
+    }
     source_activity = activity;
 }
 
