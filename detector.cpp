@@ -20,7 +20,6 @@ Detector::~Detector() {}
 // Getter
 std::string Detector::get_detector_type() const {return detector_type;}
 bool Detector::get_on_off_status() const {return on_off_status;}
-bool Detector::is_valid() const {return valid_flag;}
 int Detector::get_counts() const {return counts;}
 
 // Setters (validation required)
@@ -51,11 +50,12 @@ void Detector::set_on_off_status(std::string status)
     {
         on_off_status = false;
     }else{
-        std::cout << "\nInvalid on/off status input, please use a valid status inpit.\n";
+        std::cout << "\nInvalid on/off status input, please use a valid status input.\n";
         std::cout << "\nValid input types are;";
         std::cout << "\nON";
         std::cout << "\nOFF";
         std::cout << "\nNote that, input is case sensitive.\n";
+        on_off_status = false;
         valid_flag = false;
     }
 

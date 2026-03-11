@@ -66,7 +66,7 @@ int main()
     // If the input was invalid, the program is exited
     for(const Detector& detector : detectors)
     {
-        if(detector.get_detector_type() == "TYPE_ERROR" || detector.get_detector_type() == "STATUS_ERROR")
+        if(detector.is_valid() == false)
         {
             std::cout << "\nExiting program.";
             return 1;
