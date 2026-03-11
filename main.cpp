@@ -25,17 +25,15 @@ int main()
     while(std::getline(source_file,source_data))
     {
         std::stringstream ss(source_data);
-        std::string type,date,activity_string,ID_string;
-        if(std::getline(ss, type, ',') && std::getline(ss, date, ',') && std::getline(ss, activity_string, ',') && std::getline(ss, ID_string, ','))
+        std::string type,date,activity_string;
+        if(std::getline(ss, type, ',') && std::getline(ss, date, ',') && std::getline(ss, activity_string, ','))
         {
             try
             {
-                // Convert strings into double and int
+                // Convert strings into double
                 double activity = std::stod(activity_string);
-                int ID = std::stoi(ID_string);
-  
                 //This converts the string from the file into a double
-                Source s(type, date, activity, ID);
+                Source s(type, date, activity);
                 sources.push_back(s);
                 
             } catch(...) {}
@@ -77,5 +75,17 @@ int main()
 
     std::cout << "Loaded " << sources.size() << " sources successfully.\n";
     std::cout << "Loaded " << detectors.size() << " detectors successfully.\n";
+    for(const Source& source : sources)
+    {
+        std::cout << source.get_source_type() << "\n";
+        std::cout << source.get_source_acquisition_date() << "\n";
+        std::cout << source.get_source_activity() << "\n";
+        std::cout << source.get_source_ID() << "\n";
+    }
+    for(const Detector& detector : detectors)
+    {
+        std::cout << detector.get_detector_type() << "\n";
+        std::cout << detector.get_on_off_status() << "\n";
+    }
     return 0;
 }

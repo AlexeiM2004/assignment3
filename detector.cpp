@@ -24,21 +24,21 @@ int Detector::get_counts() const {return counts;}
 
 // Setters (validation required)
 
-void Detector::set_detector_type(std::string detector_type)
+void Detector::set_detector_type(std::string type)
 {
-
+    detector_type = type;
 }
-void Detector::set_on_off_status(bool on_off_status)
+void Detector::set_on_off_status(bool status)
 {
-
+    on_off_status = status;
 }
 
 // Main functionality function, is detector on? what source is used, generate a random number
 
 int Detector::generate_counts(const Source& source)
 {
-
-}
+    return 0;
+}  
 
 // Display info 
 
