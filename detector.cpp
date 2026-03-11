@@ -4,10 +4,10 @@
 //Include any more useful libraries 
 
 // Default constructor, essentially just the most primitive initialisation
-Detector::Detector() : detector_type("Unspecified"), on_off_status(false), counts(0) {}
+Detector::Detector() : detector_type("Unspecified"), on_off_status(false), counts(0), valid_flag(true) {}
 
 // Paramaterzied constructor, 
-Detector::Detector(std::string type, std::string status)
+Detector::Detector(std::string type, std::string status) : valid_flag(true)
 {
     set_detector_type(type);
     set_on_off_status(status);
@@ -20,6 +20,7 @@ Detector::~Detector() {}
 // Getter
 std::string Detector::get_detector_type() const {return detector_type;}
 bool Detector::get_on_off_status() const {return on_off_status;}
+bool Detector::is_valid() const {return valid_flag;}
 int Detector::get_counts() const {return counts;}
 
 // Setters (validation required)
@@ -35,8 +36,9 @@ void Detector::set_detector_type(std::string type)
         std::cout << "\nGermanium";
         std::cout << "\nScintillator";
         std::cout << "\nGeiger";
-        std::cout << "\nNote that, input is case sensitive and 'Detector' is not required";
-        detector_type = "TYPE_ERROR";
+        std::cout << "\nNote that, input is case sensitive and 'Detector' is not required.\n";
+        detector_type = type;
+        valid_flag = false;
     }
 
 }
@@ -53,8 +55,8 @@ void Detector::set_on_off_status(std::string status)
         std::cout << "\nValid input types are;";
         std::cout << "\nON";
         std::cout << "\nOFF";
-        std::cout << "\nNote that, input is case sensitive";
-        detector_type = "STATUS_ERROR"; 
+        std::cout << "\nNote that, input is case sensitive.\n";
+        valid_flag = false;
     }
 
 }

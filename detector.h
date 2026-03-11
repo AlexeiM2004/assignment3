@@ -11,6 +11,8 @@ private:
 // Define type, on/off status and counts
     std::string detector_type;
     bool on_off_status;
+    // valid_flag is an input validator that acts as a flag encase an input is invalid, allowing the program to exit gracefully
+    bool valid_flag;
     int counts;
 public:
     Detector(); // Define default constructor
@@ -19,6 +21,7 @@ public:
 // Define getters for each member
     std::string get_detector_type() const;
     bool get_on_off_status() const;
+    bool is_valid() const {return valid_flag;}
     int get_counts() const;
 // Define setters for each member (except counts, as that requires a seperate function to generate)
     void set_detector_type(std::string detector_type);
