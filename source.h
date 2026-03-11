@@ -12,6 +12,8 @@ private:
     std::string source_acquisition_date;
     double source_activity;
     long long source_ID;
+    // valid_flag is an input validator, allowing the program to exit gracefully if an error is detected
+    bool valid_flag;
 public:
     Source(); // Define default constructor, this is the house special, containing default (but validated ingredients)
     Source(std::string type, std::string date, double activity); // Define parameterised constructor, this is a source, created with custom toppings
@@ -21,6 +23,7 @@ public:
     std::string get_source_acquisition_date() const;
     double get_source_activity() const;
     long long get_source_ID() const;
+    bool is_valid() const {return valid_flag;}
 // Define setters, for each member
     void set_source_type(std::string type);
     void set_source_acquisition_date(std::string date);

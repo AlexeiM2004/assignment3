@@ -11,7 +11,7 @@ private:
 // Define type, on/off status and counts
     std::string detector_type;
     bool on_off_status;
-    // valid_flag is an input validator that acts as a flag encase an input is invalid, allowing the program to exit gracefully
+    // valid_flag is an input validator, allowing the program to exit gracefully if an error is detected
     bool valid_flag;
     int counts;
 public:

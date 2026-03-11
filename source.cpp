@@ -34,7 +34,9 @@ std::string Source::get_source_acquisition_date() const {return source_acquisiti
 double Source::get_source_activity() const {return source_activity;}
 long long Source::get_source_ID() const {return source_ID;}
 
-// Setters (validation required)
+// Setters
+
+// This setter function validates the source type by comparing it against an array of given sources
 
 void Source::set_source_type(std::string type)
 {
@@ -80,7 +82,7 @@ void Source::set_source_acquisition_date(std::string date)
             year < 1898 || year > 2026)
         {
             std::cout << "\nInvalid date, month or year input.";
-            std::cout << "\nValid input types are, DD (1-31), MM (1-12), YYYY(1898-2026)";
+            std::cout << "\nValid input types are, DD (1-31), MM (1-12), YYYY (1898-2026)";
             valid_flag = false;
         } 
     }else{
@@ -89,6 +91,8 @@ void Source::set_source_acquisition_date(std::string date)
         valid_flag = false;
     }
 }
+
+// This setter function validates the source activity, it should be within the range of 1 and 1 trillion.
 
 void Source::set_source_activity(double activity)
 {

@@ -1,7 +1,7 @@
 // 
 // 
 // Alexei Maiorov, Student ID: [11022726]
-// Date: [05/03/2026]
+// Date: [11/03/2026]
 
 #include <iostream>
 #include <vector>
@@ -62,8 +62,10 @@ int main()
             } catch(...) {}
         }
     }
+    detector_file.close();
 
-    // If the input was invalid, the program is exited
+
+    // If an invalid input was flagged in the detector.cpp, the program exits gracefully by returning 1
     for(const Detector& detector : detectors)
     {
         if(detector.is_valid() == false)
@@ -73,15 +75,37 @@ int main()
         }
     }
 
-    detector_file.close();
+    // If an invalid input was flagged in the source.cpp, the program exits gracefully by returning 1
+    for(const Source& source : sources)
+    {
+        if(source.is_valid() == false)
+        {
+            std::cout << "\nExiting program.";
+            return 1;
+        }
+    }
 
     std::cout << "\nLoaded " << sources.size() << " sources successfully.\n";
     std::cout << "\nLoaded " << detectors.size() << " detectors successfully.\n";
+
+    Source default_source_constructor_test;
+    default_source_constructor_test.display_information();
+    std::cout << "\n";
+
+    Source default_source_constructor_test_again;
+    default_source_constructor_test_again.display_information();
+    std::cout << "\n";
+
+
+    Detector default_detector_constructor_test;
+    default_detector_constructor_test.display_information();
+    std::cout << "\n";
 
     std::cout << "\nSOURCE TYPES\n";
     for(const Source& source : sources)
     {
         source.display_information();
+        Source();
         std::cout << "\n";
     }
     std::cout << "\nDETECTOR TYPES\n";
