@@ -44,5 +44,7 @@ int Detector::generate_counts(const Source& source)
 
 void Detector::display_information() const
 {
-
+    std::cout << "\nDetector Information;";
+    std::cout << "\nDetector type - " << detector_type <<",";
+    std::cout << "\nDetector status - " << on_off_status <<".";
 }

@@ -75,17 +75,19 @@ int main()
 
     std::cout << "Loaded " << sources.size() << " sources successfully.\n";
     std::cout << "Loaded " << detectors.size() << " detectors successfully.\n";
+
+    std::cout << "\nSOURCE TYPES";
     for(const Source& source : sources)
     {
-        std::cout << source.get_source_type() << "\n";
-        std::cout << source.get_source_acquisition_date() << "\n";
-        std::cout << source.get_source_activity() << "\n";
-        std::cout << source.get_source_ID() << "\n";
+        source.display_information();
+        std::cout << "\n";
     }
+    std::cout << "\nDETECTOR TYPES";
     for(const Detector& detector : detectors)
     {
-        std::cout << detector.get_detector_type() << "\n";
-        std::cout << detector.get_on_off_status() << "\n";
+        detector.display_information();
+        std::cout << "\n";
     }
+
     return 0;
 }
