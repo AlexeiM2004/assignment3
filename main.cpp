@@ -66,6 +66,13 @@ int main()
                 }
 
                 Detector d(type, status);
+
+                if(d.get_detector_type() == "0")
+                {
+                    std::cout << "\nExiting program.";
+                    return 1;
+                }
+
                 detectors.push_back(d);
                 
             } catch(...) {}

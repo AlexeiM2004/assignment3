@@ -26,7 +26,20 @@ int Detector::get_counts() const {return counts;}
 
 void Detector::set_detector_type(std::string type)
 {
-    detector_type = type;
+    if(type == "Germanium" || type == "Scintillator" || type == "Geiger")
+    {
+        detector_type = type;       
+    }else{
+        std::cout << "\nInvalid detector input, please use a valid detector type.\n";
+        std::cout << "\nValid detector types are;";
+        std::cout << "\nGermanium";
+        std::cout << "\nScintillator";
+        std::cout << "\nGeiger";
+        std::cout << "\nNote that, input is case sensitive and 'Detector' is not required";
+        int invalid_detector_input = 0;
+        detector_type = invalid_detector_input;
+    }
+
 }
 void Detector::set_on_off_status(bool status)
 {
