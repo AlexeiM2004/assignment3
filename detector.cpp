@@ -46,5 +46,5 @@ void Detector::display_information() const
 {
     std::cout << "\nDetector Information;";
     std::cout << "\nDetector type - " << detector_type <<",";
-    std::cout << "\nDetector status - " << on_off_status <<".";
+    std::cout << "\nDetector status, (0 = OFF, 1 = ON) - " << on_off_status <<".";
 }

@@ -58,6 +58,6 @@ void Source::display_information() const
     std::cout << "\nSource Information;";
     std::cout << "\nSource type - " << source_type <<",";
     std::cout << "\nSource acquisition date - " << source_acquisition_date <<",";
-    std::cout << "\nSource activity - " << source_activity <<",";
+    std::cout << "\nSource activity - " << source_activity <<" Bq,";
     std::cout << "\nUnique source ID - " << source_ID <<".";
 }

@@ -76,13 +76,13 @@ int main()
     std::cout << "Loaded " << sources.size() << " sources successfully.\n";
     std::cout << "Loaded " << detectors.size() << " detectors successfully.\n";
 
-    std::cout << "\nSOURCE TYPES";
+    std::cout << "\nSOURCE TYPES\n";
     for(const Source& source : sources)
     {
         source.display_information();
         std::cout << "\n";
     }
-    std::cout << "\nDETECTOR TYPES";
+    std::cout << "\nDETECTOR TYPES\n";
     for(const Detector& detector : detectors)
     {
         detector.display_information();
