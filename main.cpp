@@ -1,5 +1,6 @@
-// 
-// 
+// Assignment 3 - Nuclear Physics Experiment.
+// Practicing with classes by simulating a detector source system. 
+// Passing a source with a uniquely generated ID into a detector and generating a random count number.
 // Alexei Maiorov, Student ID: [11022726]
 // Date: [11/03/2026]
 
