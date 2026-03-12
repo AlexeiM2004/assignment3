@@ -4,9 +4,11 @@
 #include <random>
 
 // Default constructor
+
 Detector::Detector() : detector_type("Unspecified"), on_off_status(false), counts(0), valid_flag(true) {}
 
 // Paramaterzied constructor,
+
 Detector::Detector(std::string type, std::string status) : valid_flag(true)
 {
     set_detector_type(type);
@@ -15,16 +17,18 @@ Detector::Detector(std::string type, std::string status) : valid_flag(true)
 }
 
 // Destructor 
+
 Detector::~Detector() {}
 
-// Getter
+// Getters
+
 std::string Detector::get_detector_type() const {return detector_type;}
 bool Detector::get_on_off_status() const {return on_off_status;}
 int Detector::get_counts() const {return counts;}
 
 // Setters
 
-// Detector type setter validation
+// Detector type setter with validation
 
 void Detector::set_detector_type(std::string type)
 {
@@ -44,7 +48,7 @@ void Detector::set_detector_type(std::string type)
 
 }
 
-// Detector status setter validation 
+// Detector status setter with validation
 
 void Detector::set_on_off_status(std::string status)
 {
@@ -66,13 +70,13 @@ void Detector::set_on_off_status(std::string status)
 
 }
 
-// Main functionality function, is detector on? what source is used, generate a random number
+// Generate counts function
 
 int Detector::generate_counts(const Source& source)
 {
-    // Uses the random package to generate a random number from 1 to 1000 using the uniform distribution (all equally likely)
+    // Uses the random package to generate a random number from 1 to 10000 using the uniform distribution (all equally likely)
     static std::default_random_engine generate_random_number(std::random_device{}());
-    static std::uniform_int_distribution<> uniform_number_distribution(1, 1000);
+    static std::uniform_int_distribution<> uniform_number_distribution(1, 10000);
     if(on_off_status == true)
     {
         counts = uniform_number_distribution(generate_random_number);
@@ -83,12 +87,11 @@ int Detector::generate_counts(const Source& source)
     return 0;
 }  
 
-// Display info 
+// Display all relevant detector information function
 
 void Detector::display_information() const
 {
     std::cout << "\nDetector Information;";
     std::cout << "\nDetector type - " << detector_type <<",";
     std::cout << "\nDetector status, " << on_off_status <<", (0 = OFF, 1 = ON).";
-    std::cout << "\nCounts detected, " << counts << ".";
 }

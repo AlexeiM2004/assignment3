@@ -12,7 +12,6 @@
 #include <sstream>
 #include <fstream>
 
-
 int main()
 {
     //Read in the sources file
@@ -35,7 +34,6 @@ int main()
                 //This converts the string from the file into a double
                 Source s(type, date, activity);
                 sources.push_back(s);
-                
             } catch(...) {}
         }
     }
@@ -85,21 +83,35 @@ int main()
         }
     }
 
+    // Informs the user how many sources / detectors were read in. If an issue is detected in the file, the source / detector wont be read in 
+
     std::cout << "\nLoaded " << sources.size() << " sources successfully.\n";
     std::cout << "\nLoaded " << detectors.size() << " detectors successfully.\n";
 
-    Source default_source_constructor_test;
-    default_source_constructor_test.display_information();
+    // Default source constructor, uncomment to test if a valid default constructor is created
+    // Source default_source_constructor_test;
+    // default_source_constructor_test.display_information();
+    // std::cout << "\n";
+
+    // Default detector constructor, uncomment to test if a valid default constructor is created
+    // Detector default_detector_constructor_test;
+    // default_detector_constructor_test.display_information();
+    // std::cout << "\n";
+
+    // This loops through each detector with each source and its randomly generated counts
+
+    for(Detector& detector : detectors)
+    {
+        for(const Source& source : sources)
+        {
+            int counts = detector.generate_counts(source);
+            std::cout << "\nDetector type: " << detector.get_detector_type() << ", with source: " << source.get_source_type() << ", Counts detected: " << detector.get_counts();
+        }
+    }
+
     std::cout << "\n";
 
-    Source default_source_constructor_test_again;
-    default_source_constructor_test_again.display_information();
-    std::cout << "\n";
-
-
-    Detector default_detector_constructor_test;
-    default_detector_constructor_test.display_information();
-    std::cout << "\n";
+    // Loops through all the source types, with their respective information
 
     std::cout << "\nSOURCE TYPES\n";
     for(const Source& source : sources)
@@ -108,6 +120,9 @@ int main()
         Source();
         std::cout << "\n";
     }
+
+    // Loops through all the detector types, with their respective information
+
     std::cout << "\nDETECTOR TYPES\n";
     for(const Detector& detector : detectors)
     {

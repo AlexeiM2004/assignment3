@@ -7,7 +7,8 @@
 #include <cmath>
 #include <sstream>
 
-// Default constructor, essentially just the most primitive initialisation
+// Default constructor
+
 Source::Source() : source_type("Unspecified"), source_acquisition_date("Unspecified"), source_activity(0), source_ID(0), valid_flag(true) {
    
     // Calculates the current time since epoch (the system boot) using the steady clock (one of the three clocks in the chrono namespace)
@@ -16,10 +17,10 @@ Source::Source() : source_type("Unspecified"), source_acquisition_date("Unspecif
     auto current_time = std::chrono::steady_clock::now();
     auto duration = current_time.time_since_epoch();
     source_ID = std::chrono::duration_cast<std::chrono::nanoseconds>(duration).count();
-
 }
 
-// Paramaterzied constructor, 
+// Paramaterzied constructor
+
 Source::Source(std::string type, std::string date, double activity) : valid_flag(true)
 {
     set_source_type(type);
@@ -30,12 +31,14 @@ Source::Source(std::string type, std::string date, double activity) : valid_flag
     auto current_time = std::chrono::steady_clock::now();
     auto duration = current_time.time_since_epoch();
     source_ID = std::chrono::duration_cast<std::chrono::nanoseconds>(duration).count();
-
 }
+
 // Destructor 
+
 Source::~Source() {}
 
-// Getter
+// Getters
+
 std::string Source::get_source_type() const {return source_type;}
 std::string Source::get_source_acquisition_date() const {return source_acquisition_date;}
 double Source::get_source_activity() const {return source_activity;}
@@ -68,7 +71,7 @@ void Source::set_source_type(std::string type)
     }
 }
 
-// This function takes the date read off the file, splits it into 3 variables, then validates each one individually
+// Source acquistion setter takes the date read off the file, splits it into 3 variables, then validates each individually
 // If the DD/MM/YYYY format isnt followed then it is flagged invalid
 
 void Source::set_source_acquisition_date(std::string date)
@@ -111,7 +114,7 @@ void Source::set_source_activity(double activity)
 }
 
 
-// Display all relevant source information
+// Display all relevant source information function
 
 void Source::display_information() const
 {
