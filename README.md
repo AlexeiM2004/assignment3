@@ -15,12 +15,12 @@ This program simulates a 2nd year nuclear physics laboratory experiment by model
 ## Compilcation code
 
 For windows;
--g++ main.cpp source.cpp detector.cpp -o assignment-3.exe -std=gnu++17   
+- g++ main.cpp source.cpp detector.cpp -o assignment-3.exe -std=gnu++17   
 Then run,
 - assignment-3.exe 
 
 For Mac/Lindux;
-g++-11 main.cpp source.cpp detector.cpp -o assignment-3.o -std=gnu++17  
+- g++-11 main.cpp source.cpp detector.cpp -o assignment-3.o -std=gnu++17  
 Then run,
 - Assignment-3.o
 
