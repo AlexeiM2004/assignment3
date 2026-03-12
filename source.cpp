@@ -107,7 +107,7 @@ void Source::set_source_acquisition_date(std::string date)
 void Source::set_source_activity(double activity)
 {
     if(activity <= 0 || activity > 1e9){
-        std::cout << "\nInvalid activity, please input an activity within the range of 1-1x10^9";
+        std::cout << "\nInvalid activity, please input an activity within the range of 1-1x10^9 Bq / kg";
         valid_flag = false;
     }
     source_activity = activity;
@@ -121,6 +121,6 @@ void Source::display_information() const
     std::cout << "\nSource Information;";
     std::cout << "\nSource type - " << source_type <<",";
     std::cout << "\nSource acquisition date - " << source_acquisition_date <<",";
-    std::cout << "\nSource activity - " << source_activity <<" Bq,";
+    std::cout << "\nSource activity - " << source_activity <<" Bq / kg";
     std::cout << "\nUnique source ID - " << source_ID <<".";
 }
