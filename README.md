@@ -12,21 +12,71 @@ This program simulates a 2nd year nuclear physics laboratory experiment by model
 - Displays the results for each source detector combination and all information of each source and each detector. 
 - Handles errors gracefully by flagging invalid inputs and exiting the program with detailed reasons for each error. 
 
-## Compilcation code
+## Compilation code
 
-For windows;
+For Windows;
 - g++ main.cpp source.cpp detector.cpp -o assignment-3.exe -std=gnu++17   
-Then run,
-- assignment-3.exe 
+- Then run assignment-3.exe 
 
-For Mac/Lindux;
+For Mac/Linux;
 - g++-11 main.cpp source.cpp detector.cpp -o assignment-3.o -std=gnu++17  
-Then run,
-- Assignment-3.o
+- Then run Assignment-3.o
 
-- Note: please ensure the "sources.txt" and "detectors.txt" files are in the same directory as the created executable.
+Note: please ensure the "sources.txt" and "detectors.txt" files are in the same directory as the created executable.
 
 ## Program Structure
+
+This program is split into 7 files,  
+
+Main.cpp;
+- Entry point of program. 
+- Reads in sources.txt and detectors.txt using stringstream parsing, utilising try catch encase an input is invalid. If an input is invalid (such as a string in place of an int) the error is  caught and the line is skipped. 
+- Creates vectors to store both Source and Detector objects. 
+- Validates inputs using the valid_flag members of the source and detector class, if any inputs are flagged invalid, this is the exit point of the code. 
+- Simulates via an iterated loop, each source is run through each detector generating a randomised count rate. 
+- Calls display functions to output the source and detector information.
+
+Detector.h; 
+- Defines detector class, with private members, detector_type, on_off_status, counts and valid_flag.
+- Declares public methods; default constructor, parameterised constructor, destructor, getters and setters (for each member respectively).
+- Declares the core functions, generate counts and display information. 
+- Utilises header guards to prevent multiple inclusions.
+
+Detector.cpp;
+- Implements a valid default constructor. 
+- Implements the parameterised constructor. 
+- Implements getters for all private members.
+- Implements setters and validates each member of the detector class.
+  - set_detector_type validates by matching the detector input to one of the 3 available detector types (Scintillator, Germanium, Geiger)
+  - set_on_off_status validates by converting the "ON/OFF" strings into a boolean values.
+- Generate counts function uitilises the <random> library to create a uniform distribution and select a random value to assign to counts (provided detector is in an ON state)
+- Display function show the detector type, status and counts.
+
+Detector.txt;
+- Configures data in a csv format, "type,status" for each detector. 
+- Examples entries are shown in the file, including invalid entries.
+
+Source.h 
+- Defines source class with private members, source_type, source_acquisition_date, source_activity, source_ID and valig_flag. 
+- Declares public methods; default constructor, parameterised constructor, detectors, getters and setters (for each member respectively) 
+- Declares the core function display information.
+- Utilises header guards to prevent multiple inclusions.
+
+Source.cpp;
+- Implements a valid default constructor.
+- Implements the parameterised constructor. 
+- Implements getters for all private members.
+- Implements setters and validates each member of the source class.
+  - set_source_type validates by matching to a predefined isotope list.
+    - "Na-22","Cs-136","Co-92","Eu-152","Cs-137","I-131","Am-241","Sr-90","Pt-239","U-235" & "C-14".
+  - set_source_acquisition _date parses the date into individual day, month, year and validates each individually.
+  - set_source_activity validates the activity within 0 - 1x10^9 Bq / kg.
+- Generates a unique ID using the <chrono> package to take a nanosecond timestamp on a monotonic clock, this ensures all IDs aren't duplicated. 
+- Display function to show the source types, acquisition dates, activity and identification number.
+
+Source.txt 
+- Configures data in a csv format, "type,date,activity" 
+- Example entries are shown in file, including invalid entries
 
 ## Development Process
 
