@@ -80,6 +80,47 @@ Source.txt
 
 ## Development Process
 
+This code was developed in 6 phases,  
+
+Phase 1 – Code skeleton and class foundation; 
+
+- Created Source and Detector class skeletons. 
+- Implemented private members and public declarations (constructors, destructors, getters, setters and core functions) 
+- Created header files with associated guards.
+- Created the main and source + detector text files.
+
+Phase 2 – Input validation; 
+
+- Added validation logic to the respective setter functions. 
+- Added an isotope checklist for the source isotopes. 
+- Added a detector checklist for valid detectors. 
+- Parsed data for formatting and validation (acquisition dates) 
+- Integrated valid_flag for error tracking (This was not my first idea and was later implemented as a suggestion from “DeepSeek”) 
+
+Phase 3 – Unique identification; 
+
+- Utilised the <chrono> library to create a nanosecond timestamp. 
+- First used the high-resolution clock and switched to steady clock after research that the steady clock is monotonic. 
+
+Phase 4 – File reading; 
+
+- Added stringstream to parse both the Source and Detector input files in main. 
+- Implemented try-catch error handling for invalid lines (This code was taken from my previous assignment and modified to fit this assignment) 
+- Created vector storage for the loaded source and detector objects. 
+
+Phase 5 – Core Simulation; 
+
+- Utilised the <random> library to randomly generate a number from a uniform distribution. 
+- Implemented a generate counts function. 
+- Created an iterative loop in the main to simulate each source detector pair. 
+
+Phase 6 – Testing; 
+
+- Tested input validation extensively. 
+- Created README. 
+
+Note that, due to an issue with my laptop. I can only create new repositories by first duplicating a previous one, then deleting everything contained inside it, and renaming it to a new repository. There seems to have been an issue with this commit's history displaying Assignment 2 commits. 
+
 ## Decleration of AI usage
 
 AI tools were utilized in this coding process to;
