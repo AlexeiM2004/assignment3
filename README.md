@@ -7,8 +7,8 @@ This program simulates a 2nd year nuclear physics laboratory experiment by model
 - Loads source information from “source.txt” containing source type, source acquisition date and source activity. 
 - Loads detector information from “detector.txt” containing detector type and “ON / OFF”. 
 - Validates all given inputs in their respective setter functions. 
-- Generates an identification number for each source using the <chrono> package’s nanosecond timestamps on a monotonic clock to ensure all IDs are unique. 
-- Simulates count measurements using the <random> package to generate random radiation counts for each source-detector pair, provided the detector is in an “ON” state. 
+- Generates an identification number for each source using the ```<chrono>``` package’s nanosecond timestamps on a monotonic clock to ensure all IDs are unique. 
+- Simulates count measurements using the ```<random>``` package to generate random radiation counts for each source-detector pair, provided the detector is in an “ON” state. 
 - Displays the results for each source detector combination and all information of each source and each detector. 
 - Handles errors gracefully by flagging invalid inputs and exiting the program with detailed reasons for each error. 
 
@@ -49,7 +49,7 @@ Detector.cpp;
 - Implements setters and validates each member of the detector class.
   - set_detector_type validates by matching the detector input to one of the 3 available detector types (Scintillator, Germanium, Geiger)
   - set_on_off_status validates by converting the "ON/OFF" strings into a boolean values.
-- Generate counts function uitilises the <random> library to create a uniform distribution and select a random value to assign to counts (provided detector is in an ON state)
+- Generate counts function uitilises the ```<random>``` library to create a uniform distribution and select a random value to assign to counts (provided detector is in an ON state)
 - Display function show the detector type, status and counts.
 
 Detector.txt;
@@ -71,7 +71,7 @@ Source.cpp;
     - "Na-22","Cs-136","Co-92","Eu-152","Cs-137","I-131","Am-241","Sr-90","Pt-239","U-235" & "C-14".
   - set_source_acquisition _date parses the date into individual day, month, year and validates each individually.
   - set_source_activity validates the activity within 0 - 1x10^9 Bq / kg.
-- Generates a unique ID using the <chrono> package to take a nanosecond timestamp on a monotonic clock, this ensures all IDs aren't duplicated. 
+- Generates a unique ID using the ```<chrono>``` package to take a nanosecond timestamp on a monotonic clock, this ensures all IDs aren't duplicated. 
 - Display function to show the source types, acquisition dates, activity and identification number.
 
 Source.txt 
@@ -99,7 +99,7 @@ Phase 2 – Input validation;
 
 Phase 3 – Unique identification; 
 
-- Utilised the <chrono> library to create a nanosecond timestamp. 
+- Utilised the ```<chrono>``` library to create a nanosecond timestamp. 
 - First used the high-resolution clock and switched to steady clock after research that the steady clock is monotonic. 
 
 Phase 4 – File reading; 
@@ -110,7 +110,7 @@ Phase 4 – File reading;
 
 Phase 5 – Core Simulation; 
 
-- Utilised the <random> library to randomly generate a number from a uniform distribution. 
+- Utilised the ```<random>``` library to randomly generate a number from a uniform distribution. 
 - Implemented a generate counts function. 
 - Created an iterative loop in the main to simulate each source detector pair. 
 
